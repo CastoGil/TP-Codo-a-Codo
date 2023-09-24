@@ -16,7 +16,7 @@ Para ejecutar este proyecto localmente, necesitarás tener instalado un navegado
 Instrucciones de Ejecución
 
 1. Clone este repositorio en tu máquina local utilizando el siguiente comando:
-git clone (https://github.com/CastoGil/TP-Codo-a-Codo.git)
+gh repo clone CastoGil/TP-Codo-a-Codo
 
 2. Abre el archivo `index.html` en tu navegador web.
 
