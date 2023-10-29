@@ -3,6 +3,7 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+  
   }
   
   /* Estilos de la barra de navegación */
@@ -69,8 +70,12 @@
     border-style: solid;
     color: white;
     border-color: green;
+    
   }
-  
+  a {
+    text-decoration: none;
+    color: white;
+  }
   .button_1 {
     background-color: transparent;
     margin: 10px;
@@ -140,7 +145,31 @@
   .footer_links a:hover {
     color: rgb(6, 248, 6);
   }
-  
+  .discount{
+    margin-top: 30px;
+    margin-bottom: 10px;
+  }
+  .student{
+    border-color: blue;
+  }
+  .trainee{
+    border-color: green;
+  }
+  .junior{
+    border-color: rgb(255, 208, 0);
+  }
+  .box{
+    height: auto;
+  }
+  .footer2{
+    margin-top: 100px;
+  }
+  .sale{
+    margin-top: 25px;
+  }
+  .sale_ticket{
+    margin-bottom: 35px;
+  }
   /* Estilos de fuente responsivos */
   
   /* Media queries para tabletas */
