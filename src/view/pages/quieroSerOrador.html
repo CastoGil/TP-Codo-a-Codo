@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../style/orador.css" />
+    <title>Oradores</title>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-lg bg-secondary text-white">
+        <div class="container-fluid">
+          <a class="navbar-brand ms-4 logo" href="../../../index.html">
+            <img
+              src="../img/codoacodo.png"
+              alt="Codo a codo"
+              width="70"
+              height="45"
+            />
+            Conf Bs As
+          </a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div
+            class="collapse navbar-collapse justify-content-end"
+            id="navbarNavAltMarkup"
+          >
+            <div class="navbar-nav me-5">
+              <a class="nav-link active" aria-current="page" href="../../../index.html"
+                >La conferencia</a
+              >
+              <a class="nav-link" href="#">Los oradores</a>
+              <a class="nav-link" href="#">El lugar y la fecha</a>
+              <a class="nav-link" href="#">Conviértete en orador</a>
+              <a class="nav-link ticket" href="./comprarTickets.html">Comprar Tickets</a>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div class="registro">
+        <h1>Registrar Orador</h1>
+        <form id="formularioOrador" onsubmit="return validarFormulario()">
+          <legend>Completar formulario</legend>
+        
+          <label for="nombre">Nombre:</label>
+          <input
+            type="text"
+            id="nombre"
+            name="nombre"
+            placeholder="ej: Nombre"
+            required
+          /><br />
+        
+          <label for="apellido">Apellido:</label>
+          <input
+            type="text"
+            id="apellido"
+            name="apellido"
+            placeholder="ej: Apellido"
+            required
+          /><br />
+        
+          <label for="email">Email:</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="ej: email@gmail.com"
+            required
+          /><br />
+        
+          <label for="tema">Tema:</label>
+          <input
+            type="text"
+            id="tema"
+            name="tema"
+            placeholder="ej: Tema"
+            required
+          /><br />
+        
+          <button type="submit">
+            Guardar Orador
+          </button>
+        </form>
+        
+      </div>
+    </header>
+
+    <hr />
+
+    <h1>Lista de Oradores</h1>
+    <button class="mostrar" type="button" onclick="mostrarOradores()">Mostrar Oradores</button>
+    <table id="tablaOradores" border="1">
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Email</th>
+        <th>Tema</th>
+      </tr>
+      <!-- Aquí se mostrarán los datos de los oradores -->
+    </table>
+    <!-- Modal Bootstrap de Guardar Orador -->
+    <div
+      class="modal fade"
+      id="miModal"
+      tabindex="-1"
+      aria-labelledby="miModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="miModalLabel">Mensaje</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <p id="modalMensaje"></p>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Cerrar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal Bootstrap eliminar -->
+    <div
+      class="modal fade"
+      id="miModalEliminar"
+      tabindex="-1"
+      aria-labelledby="miModalEliminarLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="miModalEliminarLabel">
+              Confirmación de Eliminación
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <p id="modalEliminarMensaje">
+              ¿Estás seguro que deseas eliminar al Orador?
+            </p>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Cancelar
+            </button>
+            <button type="button" class="btn btn-danger" id="botonEliminar">
+              Eliminar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal Bootstrap de Editar Orador -->
+    <div
+      class="modal fade"
+      id="miModalEditar"
+      tabindex="-1"
+      aria-labelledby="miModalEditarLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="miModalEditarLabel">Editar Orador</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form id="formularioEditarOrador">
+              <label for="nuevoNombre">Nuevo Nombre:</label>
+              <input
+                type="text"
+                id="nuevoNombre"
+                name="nuevoNombre"
+                class="form-control"
+                required
+              /><br />
+
+              <label for="nuevoApellido">Nuevo Apellido:</label>
+              <input
+                type="text"
+                id="nuevoApellido"
+                name="nuevoApellido"
+                class="form-control"
+                required
+              /><br />
+
+              <label for="nuevoEmail">Nuevo Email:</label>
+              <input
+                type="email"
+                id="nuevoEmail"
+                name="nuevoEmail"
+                class="form-control"
+                required
+              /><br />
+
+              <label for="nuevoTema">Nuevo Tema:</label>
+              <input
+                type="text"
+                id="nuevoTema"
+                name="nuevoTema"
+                class="form-control"
+                required
+              /><br />
+
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Cancelar
+              </button>
+              <button
+                type="button"
+                class="btn btn-primary"
+                id="botonGuardarEdicion"
+              >
+                Guardar Cambios
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer class="footer2">
+      <div class="container">
+        <div class="footer_links">
+          <ul>
+            <li><a href="#">Preguntas Frecuentes</a></li>
+            <li><a href="#">Contáctanos</a></li>
+            <li><a href="#">Prensa</a></li>
+            <li><a href="#">Conferencias</a></li>
+            <li><a href="#">Términos y Condiciones</a></li>
+            <li><a href="#">Privacidad</a></li>
+            <li><a href="#">Estudiantes</a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/src/js/orador.js"></script>
+  </body>
+</html>
