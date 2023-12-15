@@ -66,7 +66,7 @@ function mostrarModal(mensaje) {
 
 function mostrarOradores() {
   // Realizar llamada al backend para obtener la lista de oradores
-  fetch("https://castogil.github.io/Tp_Laconferencia.github.io/api/orador")
+  fetch("http://localhost:8080/web-app/api/orador")
     .then((response) => response.json())
     .then((data) => {
       console.log("Lista de oradores:", data);
