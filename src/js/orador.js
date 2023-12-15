@@ -4,7 +4,7 @@ function validarFormulario() {
   const email = document.getElementById("email").value;
   const tema = document.getElementById("tema").value;
 
-  cío;
+  
   if (nombre === "" || apellido === "" || email === "" || tema === "") {
     alert(
       "Por favor, complete todos los campos antes de enviar el formulario."
